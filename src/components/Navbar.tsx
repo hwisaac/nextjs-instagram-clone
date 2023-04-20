@@ -50,9 +50,13 @@ export default function Navbar({}: Props) {
             </li>
           ))}
           {session ? (
-            <ColorButton text='Sign out' onClick={() => signOut()} />
+            <ColorButton
+              size='small'
+              text='Sign out'
+              onClick={() => signOut()}
+            />
           ) : (
-            <ColorButton text='Sign in' onClick={() => signIn()} />
+            <ColorButton size='small' text='Sign in' onClick={() => signIn()} />
           )}
         </ul>
       </nav>
