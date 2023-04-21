@@ -21,7 +21,7 @@ export default async function SigninPage({
 
   const providers = (await getProviders()) ?? {}; // null 인 경우 {} 가 providers에 저장
   return (
-    <section className='flex justify-center mt-[30%]'>
+    <section className='flex justify-center mt-24'>
       <Signin providers={providers} callbackUrl={callbackUrl ?? '/'} />
     </section>
   );
