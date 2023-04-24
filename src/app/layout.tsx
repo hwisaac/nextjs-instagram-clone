@@ -1,5 +1,6 @@
-import Navbar from '@/components/Navbar';
 import './globals.css';
+import 'react-multi-carousel/lib/styles.css';
+import Navbar from '@/components/Navbar';
 import { Open_Sans } from 'next/font/google';
 import AuthContext from '@/context/AuthContext';
 import SWRConfigContext from '@/context/SWRConfigContext';
@@ -24,7 +25,7 @@ export default function RootLayout({
             <Navbar />
           </header>
 
-          <main>
+          <main className='w-full flex justify-center bg-neutral-50 min-h-full'>
             <SWRConfigContext>{children}</SWRConfigContext>
           </main>
           <footer></footer>
