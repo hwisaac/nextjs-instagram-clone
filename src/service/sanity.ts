@@ -1,4 +1,6 @@
 import { createClient, type ClientConfig } from '@sanity/client';
+import imageUrlBuilder from '@sanity/image-url';
+import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 const config: ClientConfig = {
   projectId: process.env.SANITY_PROJECT_ID,
@@ -8,3 +10,9 @@ const config: ClientConfig = {
   token: process.env.SANITY_SECRET_TOKEN, // 데이터수정할거면 토큰 필요
 };
 export const client = createClient(config);
+
+const builder = imageUrlBuilder(client);
+
+export function urlFor(source: SanityImageSource) {
+  return builder.image(source).width(800).url();
+}
