@@ -15,14 +15,8 @@ export default function FollowingBar({}: Props) {
   // 2. 백엔드는 현재 로그인된 사용자의 세션 정보를 이용한다.
   // 3. 백엔드는 사용자 정보를 sanity 에서 가져온다 : followings
   // 4. 클라이언트 컴포넌트에서 followings 정보를 ui에 보여줌 (image, username)
-  const users = data?.following && [
-    ...data?.following,
-    ...data?.following,
-    ...data?.following,
-  ];
-  // const users = data?.following;
-  console.log(users);
-  // const users = undefined;
+  const users = data?.following; 
+  
   return (
     <section className='w-full flex justify-center items-center p-4 shadow-sm shadow-neutral-300 mb-4 rounded-lg min-h-[90px] overflow-x-auto'>
       {loading ? (
