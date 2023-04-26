@@ -2,8 +2,9 @@
 import React, { FormEvent, useState } from 'react';
 import useSWR from 'swr';
 import GridSpinner from '@/components/GridSpinner';
-import { ProfileUser } from '@/model/user';
+import { SearchUser } from '@/model/user';
 import UserCard from './UserCard';
+import useDebounce from '@/hooks/debounce';
 /**
  * 1. /api/search/${keyword} 에 키워드 검색어 요청
  * 2. 검색하는 keyword 가 있다면 /api/search/bob -> 유저네임이나, 네임 리턴
@@ -14,11 +15,12 @@ type Props = {};
 
 export default function UserSearch({}: Props) {
   const [keyword, setKeyword] = useState('');
+  const debouncedKeyword = useDebounce(keyword);
   const {
     data: users,
     isLoading,
     error,
-  } = useSWR<ProfileUser[]>(`/api/search/${keyword}`);
+  } = useSWR<SearchUser[]>(`/api/search/${debouncedKeyword}`);
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
