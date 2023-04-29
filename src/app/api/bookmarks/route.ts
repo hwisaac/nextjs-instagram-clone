@@ -1,11 +1,7 @@
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
-import { dislikePost, likePost } from '@/service/posts';
 import { getServerSession } from 'next-auth';
 import { NextRequest, NextResponse } from 'next/server';
-import {
-  addBookmark,
-  removeBookmark,
-} from '../../../../sanity-studio/schemas/user';
+import { addBookmark, removeBookmark } from '@/service/user';
 
 export async function PUT(req: NextRequest) {
   const session = await getServerSession(authOptions);
@@ -15,7 +11,7 @@ export async function PUT(req: NextRequest) {
   }
 
   const { id, bookmark } = await req.json();
-  if (!id || bookmark === undefined) {
+  if (!id || bookmark === null) {
     return new Response('Bad request', { status: 400 });
   }
 
