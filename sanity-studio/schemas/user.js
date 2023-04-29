@@ -42,7 +42,6 @@ export default {
           to: [{type: 'user'}],
         },
       ],
-      // @ts-ignore
       validation: (Rule) => Rule.unique(),
     },
     {
@@ -50,7 +49,6 @@ export default {
       name: 'bookmarks',
       type: 'array',
       of: [{type: 'reference', to: [{type: 'post'}]}],
-      // @ts-ignore
       validation: (Rule) => Rule.unique(),
     },
   ],

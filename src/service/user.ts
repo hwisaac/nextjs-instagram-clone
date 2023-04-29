@@ -27,7 +27,8 @@ export async function getUserByUsername(username: string) {
   return client.fetch(
     `*[_type == "user" && username == "${username}"][0]{
       ...,
-      "id":_id,following[]->{username, image},
+      "id":_id,
+      following[]->{username, image},
       followers[]->{username,image},
       "bookmarks":bookmarks[]->_id
     }`
@@ -35,12 +36,9 @@ export async function getUserByUsername(username: string) {
 }
 
 export async function searchUsers(keyword?: string) {
-  // 키워드가 있다면, name 과 username 중에서 키워드를 검색
   const query = keyword
     ? `&& (name match "${keyword}") || (username match "${keyword}")`
     : '';
-
-  // user 타입에서
   return client
     .fetch(
       `*[_type == "user" ${query}]{
@@ -83,7 +81,12 @@ export async function addBookmark(userId: string, postId: string) {
   return client
     .patch(userId)
     .setIfMissing({ bookmarks: [] })
-    .append('bookmarks', [{ _ref: postId, _type: 'reference' }])
+    .append('bookmarks', [
+      {
+        _ref: postId,
+        _type: 'reference',
+      },
+    ])
     .commit({ autoGenerateArrayKeys: true });
 }
 

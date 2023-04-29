@@ -17,7 +17,7 @@ export async function PUT(req: NextRequest) {
 
   const request = bookmark ? addBookmark : removeBookmark;
 
-  return request(id, user.id) //
+  return request(user.id, id) //
     .then((res) => NextResponse.json(res))
     .catch((error) => new Response(JSON.stringify(error), { status: 500 }));
 }
