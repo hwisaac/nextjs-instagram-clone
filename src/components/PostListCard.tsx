@@ -19,7 +19,7 @@ export default function PostListCard({ post, priority = false }: Props) {
 
   const handlePostComment = (comment: string) => {
     postComment(post, comment);
-  };
+  }; 
 
   return (
     <article className='rounded-lg shadow-md border border-gray-200'>
