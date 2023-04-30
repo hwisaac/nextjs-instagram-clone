@@ -1,6 +1,12 @@
 'use client';
 import { AuthUser } from '@/model/user';
-import React, { ChangeEvent, FormEvent, useRef, useState } from 'react';
+import React, {
+  ChangeEvent,
+  DragEventHandler,
+  FormEvent,
+  useRef,
+  useState,
+} from 'react';
 import PostUserAvatar from './PostUserAvatar';
 import FilesIcon from './ui/icons/FilesIcon';
 import Button from './ui/Button';
@@ -29,17 +35,19 @@ export default function NewPost({ user: { username, image } }: Props) {
       setFile(files[0]);
     }
   };
-  const handleDrag = (e: DragEvent) => {
+  const handleDrag: DragEventHandler<HTMLLabelElement> = (e) => {
     if (e.type === 'dragenter') {
       setDragging(true);
     } else if (e.type === 'dragleave') {
       setDragging(false);
     }
   };
-  const handleDragOver = (e: DragEvent) => {
+  const handleDragOver: DragEventHandler<HTMLLabelElement> = (e) => {
     e.preventDefault(); // 브라우저가 파일 열기를 시도하는걸 막기
   };
-  const handleDrop = (e: DragEvent) => {
+  const handleDrop: DragEventHandler<HTMLLabelElement> = (
+    e: React.DragEvent<HTMLLabelElement>
+  ) => {
     e.preventDefault();
     setDragging(false);
     const files = e.dataTransfer?.files;
@@ -55,7 +63,7 @@ export default function NewPost({ user: { username, image } }: Props) {
     setLoading(true);
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('file', textRef.current?.value ?? '');
+    formData.append('text', textRef.current?.value ?? '');
 
     fetch('/api/posts', {
       method: 'POST',
