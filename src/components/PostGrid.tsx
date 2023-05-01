@@ -7,7 +7,7 @@ export default function PostGrid() {
   const { posts, isLoading } = usePosts();
 
   return (
-    <div className='w-full text-center'>
+    <div className='w-full text-center border'>
       {isLoading && <GridSpinner />}
       <ul className='grid grid-cols-3 gap-4 py-4 px-8 '>
         {posts &&

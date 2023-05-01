@@ -3,7 +3,7 @@ import imageUrlBuilder from '@sanity/image-url';
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 const config: ClientConfig = {
-  projectId: process.env.SANITY_PROJECT_ID,
+  projectId: 'd1h8q9xq',
   dataset: process.env.SANITY_DATASET,
   useCdn: false, // set to `true` to fetch from edge cache (동적 데이터라 캐싱안함)
   apiVersion: '2023-04-21', // use current date (YYYY-MM-DD) to target the latest API version
