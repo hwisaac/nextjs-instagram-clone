@@ -122,7 +122,7 @@ export default function NewPost({ user: { username, image } }: Props) {
           {file && (
             <div className='relative w-full aspect-square'>
               <Image
-                className='object-covler'
+                className='object-cover'
                 src={URL.createObjectURL(file)}
                 alt='local file'
                 fill
